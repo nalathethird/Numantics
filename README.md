@@ -55,5 +55,4 @@ It helps me pay bills, and other things someone whos unemployed cant pay!
 ****
 
 ## Links
-- [GitHub Repository](https://github.com/nalathethird/R-Numantics)
 - [Resonite Modding Group](https://github.com/resonite-modding-group)
