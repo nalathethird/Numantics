@@ -1,14 +1,40 @@
-# ExampleMod
+# Numantics
 
-A [ResoniteModLoader](https://github.com/resonite-modding-group/ResoniteModLoader) mod for [Resonite](https://resonite.com/) that does something.
-<!-- Edit to describe what your mod does and what it may solve -->
-<!-- If your mod solves an issue, you should link to any relevant issues on the resonite github -->
+A [ResoniteModLoader](https://github.com/resonite-modding-group/ResoniteModLoader) mod for [Resonite](https://resonite.com/) that adds math expression evaluation to input fields.
 
+Type math expressions directly into any numeric field and have them automatically calculated when you finish editing!
 
-## Screenshots
-<!-- If your mod has visible effects in the game, attach some images or video of it in-use here! Otherwise remove this section -->
+## Features
+- **Evaluate math expressions** in any numeric input field (e.g., `2+3` → `5`)
+- **Shorthand operators**: Use `x` for multiply, `d` for divide, `a` for add, `s` for subtract
+- **Standard operators**: Also supports `*`, `/`, `+`, `-`
+- **Proper operator precedence**: Multiplication and division before addition and subtraction
+- **Complex expressions**: Supports parentheses and more advanced calculations
+- **Optional string field support**: Enable math evaluation in string fields via config
+
+## Usage Examples
+- Type `100+50` in a position field → becomes `150`
+- Type `5x3` in a scale field → becomes `15`
+- Type `10d2` in any numeric field → becomes `5`
+- Type `(2+3)*4` → becomes `20`
 
 ## Installation
 1. Install [ResoniteModLoader](https://github.com/resonite-modding-group/ResoniteModLoader).
-1. Place [ExampleModName.dll](https://github.com/YourGithubUsername/YourModRepoName/releases/latest/download/ExampleModName.dll) into your `rml_mods` folder. This folder should be at `C:\Program Files (x86)\Steam\steamapps\common\Resonite\rml_mods` for a default install. You can create it if it's missing, or if you launch the game once with ResoniteModLoader installed it will create this folder for you.
+1. Place [Numantics.dll](https://github.com/nalathethird/R-Numantics/releases/latest/download/Numantics.dll) into your `rml_mods` folder. This folder should be at `C:\Program Files (x86)\Steam\steamapps\common\Resonite\rml_mods` for a default install. You can create it if it's missing, or if you launch the game once with ResoniteModLoader installed it will create this folder for you.
 1. Start the game. If you want to verify that the mod is working you can check your Resonite logs.
+
+## Configuration
+The mod creates a config file with the following options:
+- `enable_math`: Enable/disable math processing (default: `true`)
+- `include_strings`: Allow math in string fields (default: `false`)
+- `verbose_logging`: Enable detailed logging for debugging (default: `false`)
+
+**Star this repo if it helped you!** ⭐ It keeps me motivated to maintain and improve my mods.
+
+Or, if you want to go further, Support me on [Ko-fi!](https://ko-fi.com/nalathethird) ☕
+It helps me pay bills, and other things someone whos unemployed cant pay!
+****
+
+## Links
+- [GitHub Repository](https://github.com/nalathethird/R-Numantics)
+- [Resonite Modding Group](https://github.com/resonite-modding-group)
