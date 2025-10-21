@@ -1,0 +1,53 @@
+﻿hey there, so im not 100% sure if this is do-able, but im trying to create a mod for Resonite that allows me to do math inside a input field or value field or whatever. because essentially for some stupid reason, you cant do 5x4 - or 5*4 to make it a number. it just attempts to use the first number in the field. basically, how im thinking of doing the mod, is just basically when you press on a value field with a number value or whatnot, it essentially lets you input as normal and depending on what you want to do, like do addition, subtraction, division, multiplicaion, etc, you can do that in the mod. Heres what ive been conversing with ChatGPT.
+```
+What Unity supports (from docs & community)
+
+Unity’s Manual states that “Numeric field input controls also accept mathematical expressions” (for example entering 2+3 results in 5). 
+
+The Manual references an ExpressionEvaluator C# class that handles evaluation. 
+
+The Scripting API docs for ExpressionEvaluator.Evaluate show that you can pass a string (e.g. "4+3") and get an output of type int/float/long/double (depending) if valid. 
+
+The supported operators/functions include:
+  • +, -, *, /
+  • power ^, modulo %
+  • parentheses ()
+  • math functions like sqrt(a), floor(a), ceil(a), round(a)
+  • trig functions cos(a), sin(a), tan(a) (arguments in radians)
+  • constant pi 
+
+In editor UI, this “expression evaluation” is applied when the numeric field loses focus or when you press Enter; it then replaces the text with the computed result. 
+
+It also supports “modification operators” for multi-object editing, like +=, *=, etc. 
+Unity Documentation
+
+On community Q&A, someone asked: “What expressions/functions are supported in numeric fields?” The accepted answer references exactly those operators/functions (arithmetic, power, trig, floor, etc.) via the internal ExpressionEvaluator. 
+Game Development Stack Exchange
+
+There’s also mention in forum/discussion threads about how ExpressionEvaluator is somewhat limited (e.g. only simple expressions) but usable. 
+
+So yes — Unity has built-in support you can lean on (for editor tooling) to allow math in number fields.
+
+How Unity probably does it (internals & where hooking would occur)
+
+From what I glean:
+
+A numeric input field (e.g. EditorGUILayout.FloatField, or whatever UI element Unity uses internally) receives a string from the user (text).
+
+Before converting that string directly to a float/double via float.Parse() or TryParse(), it submits it to the ExpressionEvaluator.Evaluate(...) method.
+
+If ExpressionEvaluator can parse and compute the expression successfully, it returns the computed numeric value. If not, fallback to default (or show error).
+
+Once the value is computed, it writes that numeric value into the object/property.
+
+It then updates the UI so the string in the textbox becomes the computed, clean numeric string.
+
+If you're writing a custom inspector, they say that EditorGUI.PropertyField and EditorGUILayout.PropertyField “automatically get support for numeric expressions.” 
+Unity Documentation
+ That implies the base field logic handles the expression parsing under the hood — you don’t need to reinvent math parsing for standard numeric inspector fields in Unity.
+
+So in your mod for FrooxEngine, you'd want to intercept where FrooxEngine’s inspector (or UI system) converts user-input string → number. That's the spot. Replace or wrap that conversion path with an expression parser you bring in (or embed one).
+
+```
+
+I had mentioned "would it just work if when you press the enter button or stop editing the value, your machine does the calculations and then updates the value? (if it includes one of the signs to calculate math?)" and i would guess that would most likely work and be the case. whats your thoughts?
