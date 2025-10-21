@@ -29,6 +29,12 @@ The mod creates a config file with the following options:
 - `include_strings`: Allow math in string fields (default: `false`)
 - `verbose_logging`: Enable detailed logging for debugging (default: `false`)
 
+**Star this repo if it helped you!** ⭐ It keeps me motivated to maintain and improve my mods.
+
+Or, if you want to go further, Support me on [Ko-fi!](https://ko-fi.com/nalathethird) ☕
+It helps me pay bills, and other things someone whos unemployed cant pay!
+****
+
 ## Links
 - [GitHub Repository](https://github.com/nalathethird/R-Numantics)
 - [Resonite Modding Group](https://github.com/resonite-modding-group)
