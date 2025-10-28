@@ -12,7 +12,7 @@ using ResoniteModLoader;
 
 namespace Numantics {
 	public class Numantics : ResoniteMod {
-		internal const string VERSION_CONSTANT = "1.0.1";
+		internal const string VERSION_CONSTANT = "1.0.2";
 		public override string Name => "Numantics";
 		public override string Author => "NalaTheThird";
 		public override string Version => VERSION_CONSTANT;
@@ -46,8 +46,6 @@ namespace Numantics {
 
 			var harmony = new Harmony("com.nalathethird.Numantics");
 			harmony.PatchAll();
-			Msg("NalaTheThird was here :p - Thanks for using my mod, please consider staring the Repo (the link value in the mod settings), or sending me a Donation on Ko-Fi: https://www.ko-fi.com/zeianala | It really motivates me to make more things and keep my mods maintained!");
-			Msg("Harmony patch applied! Ready to Crunch the Numbers with Numantics!");
 		}
 
 		[HarmonyPatch(typeof(TextEditor))]
@@ -278,18 +276,21 @@ namespace Numantics {
 
 			private static string ProcessMathFunctions(string input, bool verbose) {
 				string processed = input;
-				
+
 				processed = ProcessFunction(processed, "sqrt", Math.Sqrt, verbose);
 				processed = ProcessFunction(processed, "sin", x => Math.Sin(x * Math.PI / 180.0), verbose);
 				processed = ProcessFunction(processed, "cos", x => Math.Cos(x * Math.PI / 180.0), verbose);
 				processed = ProcessFunction(processed, "tan", x => Math.Tan(x * Math.PI / 180.0), verbose);
+				processed = ProcessFunction(processed, "asin", x => Math.Asin(x) * 180.0 / Math.PI, verbose);
+				processed = ProcessFunction(processed, "acos", x => Math.Acos(x) * 180.0 / Math.PI, verbose);
+				processed = ProcessFunction(processed, "atan", x => Math.Atan(x) * 180.0 / Math.PI, verbose);
 				processed = ProcessFunction(processed, "log10", Math.Log10, verbose);
 				processed = ProcessFunction(processed, "log", Math.Log, verbose);
 				processed = ProcessFunction(processed, "ln", Math.Log, verbose);
 				processed = ProcessFunction(processed, "abs", Math.Abs, verbose);
 				processed = ProcessFunction(processed, "floor", Math.Floor, verbose);
 				processed = ProcessFunction(processed, "ceil", Math.Ceiling, verbose);
-				
+
 				return processed;
 			}
 
