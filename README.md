@@ -18,8 +18,6 @@ Type math expressions directly into any numeric field and have them automaticall
 - Math functions (input in degrees for trig):  
   `sqrt`, `sin`, `cos`, `tan`, `log`, `log10`, `ln`, `abs`, `floor`, `ceil`
 - `pi` constant is supported (case-insensitive)
-- Easter eggs (config-controlled):
-  - Fun special-case behaviors
 - Rounding (config-controlled):
   - `round_results` option — when enabled rounds all calculated numeric results to the nearest integer
 
@@ -43,8 +41,6 @@ The mod creates/uses a configuration file with the following options:
   Allow math evaluation inside fields whose type is `string`.
 - `round_results` (bool, default: `false`)  
   When true, all numeric results are rounded to the nearest integer before being written back to fields.
-- `enable_easter_eggs` (bool, default: `false`)  
-  Toggle Easter eggs (fun special-cases).
 - `verbose_logging` (bool, default: `false`)  
   Enables detailed logging — recommended while testing field detection and parsing.
 
