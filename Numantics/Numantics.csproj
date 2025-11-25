@@ -5,7 +5,7 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <TargetFramework>net10.0</TargetFramework>
     <FileAlignment>512</FileAlignment>
-    <LangVersion>12.0</LangVersion>
+    <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <Deterministic>true</Deterministic>
     <!-- Change CopyToMods to true if you'd like builds to be moved into the Mods folder automatically-->
@@ -18,35 +18,27 @@
     <!-- If you don't want to provide a ResonitePath in dotnet build, you can specify one here -->
     <ResonitePath>$(MSBuildThisFileDirectory)Resonite/</ResonitePath>
     <ResonitePath Condition="Exists('E:\SteamLibrary\steamapps\common\Resonite\')">E:\SteamLibrary\steamapps\common\Resonite\</ResonitePath>
+    <ResonitePath Condition="Exists('C:\Program Files (x86)\Steam\steamapps\common\Resonite\')">C:\Program Files (x86)\Steam\steamapps\common\Resonite\</ResonitePath>
     <ResonitePath Condition="Exists('$(HOME)/.steam/steam/steamapps/common/Resonite/')">$(HOME)/.steam/steam/steamapps/common/Resonite/</ResonitePath>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="EngineRefs\**" />
-    <EmbeddedResource Remove="EngineRefs\**" />
-    <None Remove="EngineRefs\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove=".txt" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>E:\SteamLibrary\steamapps\common\Resonite\rml_libs\0Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="Elements.Core">
-      <HintPath>E:\SteamLibrary\steamapps\common\Resonite\Elements.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="FrooxEngine">
-      <HintPath>E:\SteamLibrary\steamapps\common\Resonite\FrooxEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="Renderite.Shared">
-      <HintPath>E:\SteamLibrary\steamapps\common\Resonite\Renderite.Shared.dll</HintPath>
+      <HintPath>$(ResonitePath)rml_libs\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="ResoniteModLoader">
-      <HintPath>E:\SteamLibrary\steamapps\common\Resonite\Libraries\ResoniteModLoader.dll</HintPath>
+      <HintPath>$(ResonitePath)Libraries\ResoniteModLoader.dll</HintPath>
     </Reference>
+    <Reference Include="FrooxEngine">
+      <HintPath>$(ResonitePath)FrooxEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="Renderite.Shared">
+      <HintPath>$(ResonitePath)Renderite.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Elements.Core">
+      <HintPath>$(ResonitePath)Elements.Core.dll</HintPath>
+    </Reference>
+    
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(CopyToMods)'=='true'">
     <Message Text="Attempting to copy $(TargetFileName) to $(ResonitePath)rml_mods" Importance="high" />
