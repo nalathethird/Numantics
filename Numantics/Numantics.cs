@@ -206,6 +206,7 @@ namespace Numantics {
 				processed = ProcessFunction(processed, "abs", Math.Abs, false);
 				processed = ProcessFunction(processed, "floor", Math.Floor, false);
 				processed = ProcessFunction(processed, "ceil", Math.Ceiling, false);
+				processed = Regex.Replace(processed, @"mod\(([^,]+),([^)]+)\)", "($1)%($2)", RegexOptions.IgnoreCase);
 
 				return processed;
 			}
