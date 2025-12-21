@@ -12,7 +12,7 @@ using ResoniteModLoader;
 
 namespace Numantics {
 	public class Numantics : ResoniteMod {
-		internal const string VERSION_CONSTANT = "1.0.3";
+		internal const string VERSION_CONSTANT = "1.0.4";
 		public override string Name => "Numantics";
 		public override string Author => "NalaTheThird";
 		public override string Version => VERSION_CONSTANT;
@@ -206,6 +206,7 @@ namespace Numantics {
 				processed = ProcessFunction(processed, "abs", Math.Abs, false);
 				processed = ProcessFunction(processed, "floor", Math.Floor, false);
 				processed = ProcessFunction(processed, "ceil", Math.Ceiling, false);
+				processed = Regex.Replace(processed, @"mod\(([^,]+),([^)]+)\)", "($1)%($2)", RegexOptions.IgnoreCase);
 
 				return processed;
 			}
